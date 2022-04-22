@@ -6,8 +6,6 @@ Ename varchar(50),
 salary int,
 Mobile varchar(15),
 Deptno int);
---To see structure of table
-SP_Help Emp;
 
 Insert into Employee(EId ,Ename,Salary ,Mobile,Deptno)
 values(101,'Ankit Kumar',18000,'635796422',10),
