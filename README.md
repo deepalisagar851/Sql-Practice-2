@@ -1,7 +1,5 @@
 # Sql-Practice-2
 
-
---To craete table
 create table Employee(
 EId int ,
 Ename varchar(50),
