@@ -11,14 +11,18 @@ values(101,'Ankit Kumar',18000,'635796422',10),
 (108,'Harshit Kumar',15000,'9061000645',30),
 (109,'Muskan Sagar',16000,'9860106456',20);
 
-SELECT Count(EID),Ename,Salary,Moblie,Deptno FROM Employee
-GROUP BY Deptno 
+SELECT * FROM Employee
 ORDER BY salary DESC; 
 
 Select * Into Emp1 from Employee;
+INSERT INTO Emp1(EId ,Ename,Salary ,Mobile,Deptno)
+  SELECT *FROM Employee;
 
-create table Department(EID int,Post varchar(25), Department Varchar(25));
-Insert into Department(EID,Post, Department)
+SELECT * FROM Employee
+WHERE Salary BETWEEN 10000 AND 20000;
+
+create table Dept(deptID int,Post varchar(25), Department Varchar(25));
+Insert into Dept(DeptID,Post, Department)
 values(101,'Manager','HR Management'), 
 (102,'TL','CLP'),
 (103,'Manager','Survey Management'),
@@ -29,9 +33,36 @@ values(101,'Manager','HR Management'),
 (108,'Assistant Mananger' ,'HR Management'),
 (109,'TM','GL Management');
 
-SELECT Employee.(*) 
-FROM Employee
-INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+SELECT * FROM Employee
+INNER JOIN Dept ON Employee.EID=Dept.DeptID;
 
+Select * Into Emp2 from Emp1;
+INSERT INTO Emp2(EId ,Ename,Salary ,Mobile,Deptno)
+  SELECT *FROM Emp1;
 
-SELECT * FROM Employee WHERE Salary BETWEEN 1000 AND 2000;
+SELECT * FROM Emp1
+UNION 
+SELECT * FROM Emp2;
+
+SELECT * FROM Employee
+INTERSECT
+SELECT * FROM Emp1;
+
+SELECT * FROM Emp1
+EXCEPT
+SELECT * FROM Emp2;
+
+SELECT DeptNo, SUM(Salary) AS TotalSal FROM Employee
+GROUP BY DeptNo 
+HAVING COUNT(EId) >1;
+
+SELECT COUNT(EID)
+FROM Employee;
+SELECT MIN(salary) as Lowest_Salary
+FROM Employee;
+SELECT MAX(salary) as Hightest_Salary
+FROM Employee;
+SELECT AVG(salary) as Aevage_Salary
+FROM Employee;
+SELECT SUM(salary) as Total_Salary
+FROM Employee;
